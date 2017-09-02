@@ -8,11 +8,23 @@
 
 import UIKit
 
+//=============================================================//
+//MARK: SearchBarInCollectionViewVC Class
+//=============================================================//
+
 class SearchBarInCollectionViewVC: UIViewController {
+    
+//=============================================================//
+//MARK: Stored Properties
+//=============================================================//
     
     let nameArray = ["appinventiv logo","up arrow","down arrow","walt disney","gmail","group login","group logo","single user logo","password logo blue","password logo red","colors","self pic","password logo","add user logo"]
     
     var filteredArray = [String]()
+    
+//=============================================================//
+//MARK: Defining IBOutlets
+//=============================================================//
     
     @IBOutlet weak var myCollectionView: UICollectionView!
     
@@ -21,6 +33,10 @@ class SearchBarInCollectionViewVC: UIViewController {
     @IBOutlet weak var largeLabelName: UILabel!
     
     @IBOutlet weak var largeImageView: UIImageView!
+    
+//=============================================================//
+//MARK: View Method
+//=============================================================//
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -32,45 +48,54 @@ class SearchBarInCollectionViewVC: UIViewController {
         self.navigationItem.title = "My Gallery"
         filteredArray = nameArray
         
-        
-        // Do any additional setup after loading the view, typically from a nib.
     }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-
 
 }
 
+//=================================================================//
+//MARK: SearchBarInCollectionViewVC Class Extension for UISearchController
+//=================================================================//
 
 extension SearchBarInCollectionViewVC: UISearchBarDelegate{
+    
+//=================================================================//
+//MARK: Filtering data according to the text entered in the Search Bar
+//=================================================================//
     
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         
         filteredArray = searchText.isEmpty ? nameArray : nameArray.filter { (temp: String) -> Bool in
             // If dataItem matches the searchText, return true to include it
             return temp.range(of: searchText, options: .caseInsensitive, range: nil, locale: nil) != nil
-            
         }
+        
         if filteredArray .isEmpty {
             let alert = UIAlertController(title: "Alert", message: "No Image Found:", preferredStyle: UIAlertControllerStyle.alert)
             alert.addAction(UIAlertAction(title: "Click", style: UIAlertActionStyle.default, handler: nil))
             self.present(alert, animated: true, completion: nil)
         }
-        
         myCollectionView.reloadData()
     }
 
 }
 
+//====================================================================//
+//MARK: SearchBarInCollectionViewVC Class Extension for UICollectionView
+//====================================================================//
 
 extension SearchBarInCollectionViewVC: UICollectionViewDelegate, UICollectionViewDataSource{
+    
+//=============================================================//
+//MARK: Setting Number Of Items
+//=============================================================//
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return filteredArray.count
     }
+    
+//=============================================================//
+//MARK: Setting the Items
+//=============================================================//
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
@@ -83,6 +108,10 @@ extension SearchBarInCollectionViewVC: UICollectionViewDelegate, UICollectionVie
         return cell
     }
     
+//=============================================================//
+//MARK: Showing the Selected Images
+//=============================================================//
+    
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         self.largeImageView.image = UIImage(named: filteredArray[indexPath.row])
         self.largeLabelName.text = filteredArray[indexPath.row]
@@ -90,7 +119,15 @@ extension SearchBarInCollectionViewVC: UICollectionViewDelegate, UICollectionVie
     
 }
 
+//=============================================================//
+//MARK: Class for Cell UIViews
+//=============================================================//
+
 class CollectionCell: UICollectionViewCell {
+    
+//=============================================================//
+//MARK: UICollectionViewCell IBOutlets
+//=============================================================//
     
     @IBOutlet weak var smallImageView: UIImageView!
     

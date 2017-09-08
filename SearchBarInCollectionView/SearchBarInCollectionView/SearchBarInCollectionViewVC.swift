@@ -18,8 +18,10 @@ class SearchBarInCollectionViewVC: UIViewController {
 //MARK: Stored Properties
 //=============================================================//
     
+    // Array contains the names of the images
     let nameArray = ["appinventiv logo","up arrow","down arrow","walt disney","gmail","group login","group logo","single user logo","password logo blue","password logo red","colors","self pic","password logo","add user logo"]
     
+    // Array to store filtered Data
     var filteredArray = [String]()
     
 //=============================================================//
@@ -43,11 +45,12 @@ class SearchBarInCollectionViewVC: UIViewController {
         self.myCollectionView.delegate = self
         self.myCollectionView.dataSource = self
         self.mySearchBar.delegate = self
-        self.largeImageView.image = UIImage(named: nameArray[0])
-        self.largeLabelName.text = nameArray[0]
+        // Setting the default image and label value
+        self.largeImageView.image = UIImage(named: self.nameArray[0])
+        self.largeLabelName.text = self.nameArray[0]
         self.navigationItem.title = "My Gallery"
-        filteredArray = nameArray
-        
+        self.filteredArray = self.nameArray
+        self.myCollectionView.backgroundColor = UIColor.clear
     }
 
 }
@@ -64,17 +67,17 @@ extension SearchBarInCollectionViewVC: UISearchBarDelegate{
     
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         
-        filteredArray = searchText.isEmpty ? nameArray : nameArray.filter { (temp: String) -> Bool in
+        self.filteredArray = searchText.isEmpty ? self.nameArray : self.nameArray.filter { (temp: String) -> Bool in
             // If dataItem matches the searchText, return true to include it
             return temp.range(of: searchText, options: .caseInsensitive, range: nil, locale: nil) != nil
         }
         
-        if filteredArray .isEmpty {
+        if self.filteredArray .isEmpty {
             let alert = UIAlertController(title: "Alert", message: "No Image Found:", preferredStyle: UIAlertControllerStyle.alert)
             alert.addAction(UIAlertAction(title: "Click", style: UIAlertActionStyle.default, handler: nil))
             self.present(alert, animated: true, completion: nil)
         }
-        myCollectionView.reloadData()
+        self.myCollectionView.reloadData()
     }
 
 }
@@ -90,7 +93,7 @@ extension SearchBarInCollectionViewVC: UICollectionViewDelegate, UICollectionVie
 //=============================================================//
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return filteredArray.count
+        return self.filteredArray.count
     }
     
 //=============================================================//
@@ -100,11 +103,12 @@ extension SearchBarInCollectionViewVC: UICollectionViewDelegate, UICollectionVie
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "collectionCell_ID", for: indexPath) as? CollectionCell else {
-            fatalError()
+            fatalError("Cell Failed to load")
         }
-        cell.smallImageView.image = UIImage(named: filteredArray[indexPath.row])
+        cell.smallImageView.image = UIImage(named: self.filteredArray[indexPath.row])
+        // Setting the corner edges of the ImageView
         cell.layer.cornerRadius = 8
-        cell.labelName.text = filteredArray[indexPath.row]
+        cell.labelName.text = self.filteredArray[indexPath.row]
         return cell
     }
     
@@ -113,8 +117,8 @@ extension SearchBarInCollectionViewVC: UICollectionViewDelegate, UICollectionVie
 //=============================================================//
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        self.largeImageView.image = UIImage(named: filteredArray[indexPath.row])
-        self.largeLabelName.text = filteredArray[indexPath.row]
+        self.largeImageView.image = UIImage(named: self.filteredArray[indexPath.row])
+        self.largeLabelName.text = self.filteredArray[indexPath.row]
     }
     
 }

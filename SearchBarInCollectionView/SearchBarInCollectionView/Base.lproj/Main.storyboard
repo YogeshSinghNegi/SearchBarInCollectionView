@@ -11,7 +11,7 @@
         <!--View Controller-->
         <scene sceneID="d75-dX-sdh">
             <objects>
-                <viewController id="J9r-K2-m2J" customClass="ViewController" customModule="CollectionViewProject" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="J9r-K2-m2J" customClass="ViewController" customModule="SearchBarInCollectionView" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="y3n-o8-yXA"/>
                         <viewControllerLayoutGuide type="bottom" id="H0X-fK-DS0"/>
@@ -37,7 +37,7 @@
                                     <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 </collectionViewFlowLayout>
                                 <cells>
-                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="collectionCell_ID" id="8DF-0X-UYI" customClass="CollectionCell" customModule="CollectionViewProject" customModuleProvider="target">
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="collectionCell_ID" id="8DF-0X-UYI" customClass="CollectionCell" customModule="SearchBarInCollectionView" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="23.5" width="170" height="170"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO">
@@ -82,7 +82,7 @@
         <!--Search Bar In Collection ViewVC-->
         <scene sceneID="ycG-en-LQ2">
             <objects>
-                <viewController id="gFp-iw-3aZ" customClass="SearchBarInCollectionViewVC" customModule="CollectionViewProject" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="gFp-iw-3aZ" customClass="SearchBarInCollectionViewVC" customModule="SearchBarInCollectionView" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="ATB-BX-Q7X"/>
                         <viewControllerLayoutGuide type="bottom" id="mFn-gY-jVK"/>
@@ -95,21 +95,30 @@
                                 <rect key="frame" x="0.0" y="64" width="375" height="56"/>
                                 <textInputTraits key="textInputTraits"/>
                             </searchBar>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="KeD-Py-k6r">
-                                <rect key="frame" x="176" y="223" width="189" height="220"/>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="YBp-uM-FQp">
+                                <rect key="frame" x="0.0" y="120" width="375" height="547"/>
+                                <subviews>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="KeD-Py-k6r">
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="547"/>
+                                    </imageView>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="220" id="G66-fe-z4d"/>
+                                    <constraint firstItem="KeD-Py-k6r" firstAttribute="height" secondItem="YBp-uM-FQp" secondAttribute="height" id="6VG-WB-3fc"/>
+                                    <constraint firstItem="KeD-Py-k6r" firstAttribute="centerX" secondItem="YBp-uM-FQp" secondAttribute="centerX" id="7V8-Mf-apc"/>
+                                    <constraint firstItem="KeD-Py-k6r" firstAttribute="centerY" secondItem="YBp-uM-FQp" secondAttribute="centerY" id="dVa-yk-pNr"/>
+                                    <constraint firstItem="KeD-Py-k6r" firstAttribute="width" secondItem="YBp-uM-FQp" secondAttribute="width" id="yQn-Xj-HjJ"/>
                                 </constraints>
-                            </imageView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Btb-u4-aEc">
+                            </view>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Btb-u4-aEc">
                                 <rect key="frame" x="176" y="477" width="189" height="24"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="mpF-Gh-DBD">
                                 <rect key="frame" x="16" y="120" width="150" height="547"/>
-                                <color key="backgroundColor" red="0.7019608021" green="0.7019608021" blue="0.7019608021" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="150" id="ugx-4K-MmW"/>
                                 </constraints>
@@ -120,7 +129,7 @@
                                     <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 </collectionViewFlowLayout>
                                 <cells>
-                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="collectionCell_ID" id="b9L-wb-9kU" customClass="CollectionCell" customModule="CollectionViewProject" customModuleProvider="target">
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="collectionCell_ID" id="b9L-wb-9kU" customClass="CollectionCell" customModule="SearchBarInCollectionView" customModuleProvider="target">
                                         <rect key="frame" x="14.5" y="0.0" width="121" height="149"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO">
@@ -138,7 +147,6 @@
                                                 </label>
                                             </subviews>
                                         </view>
-                                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                         <constraints>
                                             <constraint firstItem="n5L-m1-sxi" firstAttribute="leading" secondItem="b9L-wb-9kU" secondAttribute="leading" constant="5" id="7XN-dm-aNc"/>
                                             <constraint firstAttribute="trailing" secondItem="n5L-m1-sxi" secondAttribute="trailing" constant="5" id="8Jx-Mr-9NA"/>
@@ -158,16 +166,14 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="Btb-u4-aEc" firstAttribute="top" secondItem="KeD-Py-k6r" secondAttribute="bottom" constant="34" id="2jw-6y-1N3"/>
-                            <constraint firstAttribute="trailing" secondItem="KeD-Py-k6r" secondAttribute="trailing" constant="10" id="7K2-BY-kD4"/>
-                            <constraint firstItem="KeD-Py-k6r" firstAttribute="leading" secondItem="mpF-Gh-DBD" secondAttribute="trailing" constant="10" id="85U-ft-L7A"/>
+                            <constraint firstAttribute="trailing" secondItem="YBp-uM-FQp" secondAttribute="trailing" id="6oN-xG-Ocg"/>
                             <constraint firstItem="qFU-Ta-1EY" firstAttribute="centerX" secondItem="vMS-hM-FPn" secondAttribute="centerX" id="C7T-G7-YWI"/>
+                            <constraint firstItem="YBp-uM-FQp" firstAttribute="leading" secondItem="vMS-hM-FPn" secondAttribute="leading" id="CgX-RY-EyS"/>
+                            <constraint firstItem="YBp-uM-FQp" firstAttribute="top" secondItem="ATB-BX-Q7X" secondAttribute="bottom" constant="56" id="HWc-PC-CAo"/>
                             <constraint firstItem="mpF-Gh-DBD" firstAttribute="leading" secondItem="vMS-hM-FPn" secondAttribute="leading" constant="16" id="Hvr-13-nWg"/>
                             <constraint firstItem="qFU-Ta-1EY" firstAttribute="top" secondItem="ATB-BX-Q7X" secondAttribute="bottom" id="N6W-WR-ga5"/>
+                            <constraint firstItem="mFn-gY-jVK" firstAttribute="top" secondItem="YBp-uM-FQp" secondAttribute="bottom" id="TZr-UE-AEg"/>
                             <constraint firstItem="mFn-gY-jVK" firstAttribute="top" secondItem="mpF-Gh-DBD" secondAttribute="bottom" id="dhf-fZ-7Xc"/>
-                            <constraint firstItem="KeD-Py-k6r" firstAttribute="centerY" secondItem="vMS-hM-FPn" secondAttribute="centerY" id="eQH-vN-Zu9"/>
-                            <constraint firstItem="Btb-u4-aEc" firstAttribute="centerX" secondItem="KeD-Py-k6r" secondAttribute="centerX" id="lCa-b6-WxP"/>
-                            <constraint firstItem="Btb-u4-aEc" firstAttribute="width" secondItem="KeD-Py-k6r" secondAttribute="width" id="mPA-z9-5DP"/>
                             <constraint firstItem="mpF-Gh-DBD" firstAttribute="top" secondItem="qFU-Ta-1EY" secondAttribute="bottom" id="rHv-lE-gC4"/>
                             <constraint firstItem="qFU-Ta-1EY" firstAttribute="width" secondItem="vMS-hM-FPn" secondAttribute="width" id="wfb-qq-SRf"/>
                         </constraints>
